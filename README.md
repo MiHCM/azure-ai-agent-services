@@ -1,20 +1,60 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# MiHCM Data Azure AI Agent Template
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+This repository provides a template for deploying and managing an Azure AI Agent for MiHCM's HR system. The project leverages Azure Bicep for infrastructure deployment and Python for interacting with Azure AI services and APIs.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Features
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+- **Azure AI Agent Deployment**: Automates the deployment of Azure AI resources, including AI Hubs, AI Projects, and dependent resources.
+- **Integration with MiHCM HR System**: Provides tools to interact with MiHCM's HR APIs for tasks like leave management, feedback handling, and work activity tracking.
+- **OpenAPI Integration**: Uses OpenAPI specifications to define and interact with MiHCM's external APIs.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## Project Structure
+
+- `.env` – Environment variables for the project  
+- `main.bicep` – Main Bicep file for deploying the AI Agent setup  
+- `externalapi.json` – OpenAPI specification for MiHCM's external API  
+- `openAPI3Agent.py` – Python script for interacting with Azure AI and MiHCM APIs  
+- `requirements.txt` – Python dependencies for the project  
+- `modules-mi-agent/` – Bicep modules for modular resource deployment  
+  - `add-capability-host.bicep` – Adds capability host resource  
+  - `ai-service-role-assignments.bicep` – Sets role assignments for AI services  
+  - `standard-ai-hub.bicep` – Deploys standard AI Hub  
+  - `standard-ai-project.bicep` – Deploys standard AI Project  
+  - `standard-dependent-resources.bicep` – Deploys dependent resources  
+- `README.md` – Project documentation  
+
+
+
+## Prerequisites
+
+1. **Azure Subscription**: Ensure you have an active Azure subscription.
+2. **Azure CLI**: Install the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
+3. **Bicep CLI**: Install the [Bicep CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install).
+4. **Python**: Install Python 3.8 or later.
+5. **Dependencies**: Install Python dependencies using `pip install -r requirements.txt`.
+
+## Deployment
+
+### Step 1: Configure Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```properties
+PROJECT_CONNECTION_STRING="<Your AI project key>"
+PROJECT_OPENAPI_CONNECTION_NAME="<Connection name of your API key>"
+```
+
+### Step 2: Deploy Azure Resources
+ - Deploy the resources using the `main.bicep` file.
+ - Update `PROJECT_CONNECTION_STRING` with the connection string obtained.
+
+### Step 3: Define the API Key 
+- Navigate to your AI Project and add your API Key as a custom key in the below format:
+```
+Ocp-Apim-Subscription-Key: <your key>
+```
+- Update the `PROJECT_OPENAPI_CONNECTION_NAME` with the connection name you created.
+
+### Step 4: Run the python script
+- Use the `openAPI3Agent.py` script to interact with the deployed Azure AI Agent and MiHCM APIs.
+- Update the `agent_request` value with different requests for the agent.
