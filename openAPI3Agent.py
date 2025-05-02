@@ -40,6 +40,17 @@ load_dotenv()
 # Set the employee code for the user
 employeeCode = 1
 
+#sample reuqests to test the agent
+
+# sample_requests = [
+#     "What are my leave balances",
+#     "check my leave balance for 2024. If I have more than 10 annual leave , submit a HR request for the leave encashment or carry forward",
+#     "please show me all my hr requests",
+#     "submit a work activity for 2 1/2 hour for the meeting with Adventure works on Project Kick off",
+#     "submit a work activity for 2 1/2 hour for the meeting with Contoso on Project Kick off",
+#     "list all my work items for today and yesterday"
+# ]
+
 # Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
@@ -50,14 +61,14 @@ project_client = AIProjectClient.from_connection_string(
 connection_name = os.environ["PROJECT_OPENAPI_CONNECTION_NAME"]
 connection = project_client.connections.get(connection_name=connection_name)
 
-#use with local openapi.json file
-# with open('./externalapi.json', 'r') as f:
-#     openapi_spec = jsonref.loads(f.read())
+# use with local openapi.json file
+with open('./mihcmExternalAPI.json', 'r') as f:
+    openapi_spec = jsonref.loads(f.read())
 
 # Use with openapi.json file from url
-response = requests.get('https://mi-aca-externalapi-qa-sea.orangeflower-7a82613b.southeastasia.azurecontainerapps.io/swagger/v1/swagger.json')
-response.raise_for_status()  # makes sure it raises an error if something goes wrong
-openapi_spec = jsonref.loads(response.text)
+# response = requests.get('<replace the openapi confguration url>')
+# response.raise_for_status()  # makes sure it raises an error if something goes wrong
+# openapi_spec = jsonref.loads(response.text)
 
 # Create Auth object for the OpenApiTool 
 auth = OpenApiConnectionAuthDetails(security_scheme=OpenApiConnectionSecurityScheme(connection_id=connection.id))
@@ -79,7 +90,7 @@ When providing the responses related to leave you MUST provide the leave type na
 If any of the mappings are wrong the response is considered wrong. And the task is considered failed.
 """
 
-agent_request = "check my leave balances in 2022. If I have more than 10 annual leaves submit a reach hr request for encashment of those leaves"
+agent_request = "list all my work items for today and yesterday"
 
 # Create agent with OpenAPI tool and process assistant run
 with project_client:

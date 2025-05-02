@@ -13,10 +13,6 @@
     {
       "url": "https://data.mihcm.com",
       "description": "Production API"
-    },
-    {
-      "url": "https://localhost:7081",
-      "description": "Development API"
     }
   ],
   "paths": {
