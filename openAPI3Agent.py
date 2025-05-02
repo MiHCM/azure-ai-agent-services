@@ -47,7 +47,7 @@ employeeCode = 1
 #     "check my leave balance for 2024. If I have more than 10 annual leave , submit a HR request for the leave encashment or carry forward",
 #     "please show me all my hr requests",
 #     "submit a work activity for 2 1/2 hour for the meeting with Adventure works on Project Kick off",
-#     "submit a work activity for 2 1/2 hour for the meeting with Contoso on Project Kick off",
+#     "submit a work activity for yesterday for 2 1/2 hour for the meeting with Contoso on Project Kick off",
 #     "list all my work items for today and yesterday"
 # ]
 
