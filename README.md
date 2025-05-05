@@ -1,6 +1,6 @@
-# MiHCM Data Azure AI Agent Template
+# HR Assist Agent
 
-This repository provides a template for deploying and managing an Azure AI Agent for MiHCM's HR system. The project leverages Azure Bicep for infrastructure deployment and Python for interacting with Azure AI services and APIs.
+This repository provides a template for deploying and managing an Azure AI Agent for MiHCM. The project leverages Azure Bicep for infrastructure deployment and Python for interacting with Azure AI services and APIs.
 
 ## Features
 
@@ -8,12 +8,15 @@ This repository provides a template for deploying and managing an Azure AI Agent
 - **Integration with MiHCM HR System**: Provides tools to interact with MiHCM's HR APIs for tasks like leave management, feedback handling, and work activity tracking.
 - **OpenAPI Integration**: Uses OpenAPI specifications to define and interact with MiHCM's external APIs.
 
+## Architecture Overview
+![Architecture Overview](./ArchitectureOverview.png)
 ## Project Structure
-
+- `README.md` – Project documentation  
+- `LICENSE` - Project License
 - `.env` – Environment variables for the project  
-- `main.bicep` – Main Bicep file for deploying the AI Agent setup  
-- `externalapi.json` – OpenAPI specification for MiHCM's external API  
-- `openAPI3Agent.py` – Python script for interacting with Azure AI and MiHCM APIs  
+- `deploy.bicep` – Main Bicep file for deploying the AI Agent setup  
+- `mihcmexternalAPI.json` – OpenAPI specification for MiHCM's external API  
+- `template.py` – Python script for interacting with Azure AI and MiHCM APIs  
 - `requirements.txt` – Python dependencies for the project  
 - `modules-mi-agent/` – Bicep modules for modular resource deployment  
   - `add-capability-host.bicep` – Adds capability host resource  
@@ -21,7 +24,7 @@ This repository provides a template for deploying and managing an Azure AI Agent
   - `standard-ai-hub.bicep` – Deploys standard AI Hub  
   - `standard-ai-project.bicep` – Deploys standard AI Project  
   - `standard-dependent-resources.bicep` – Deploys dependent resources  
-- `README.md` – Project documentation  
+
 
 
 
@@ -45,7 +48,7 @@ PROJECT_OPENAPI_CONNECTION_NAME="<Connection name of your API key>"
 ```
 
 ### Step 2: Deploy Azure Resources
- - Deploy the resources using the `main.bicep` file.
+ - Deploy the resources using the `deploy.bicep` file.
  - Update `PROJECT_CONNECTION_STRING` with the connection string obtained.
 
 ### Step 3: Define the API Key 
@@ -56,5 +59,18 @@ Ocp-Apim-Subscription-Key: <your key>
 - Update the `PROJECT_OPENAPI_CONNECTION_NAME` with the connection name you created.
 
 ### Step 4: Run the python script
-- Use the `openAPI3Agent.py` script to interact with the deployed Azure AI Agent and MiHCM APIs.
+- Use the `template.py` script to interact with the deployed Azure AI Agent and MiHCM APIs.
 - Update the `agent_request` value with different requests for the agent.
+
+## Use Cases 
+- What are my leave balances?
+- Check my leave balance for 2024. If I have more than 10 days of annual leave, submit an HR request for leave encashment or carry forward.
+- Please show me all my HR requests.
+- Submit a work activity for 2.5 hours for the meeting with Adventure Works on the Project Kick-off.
+- Submit a work activity for yesterday for 2.5 hours for the meeting with Contoso on the Project Kick-off.
+- List all my work items for yesterday and today.
+
+## Support
+Have a question or need assistance? Get in touch with our team:
+- Support: ai-support@mihcm.com
+- Info on how to setup an account with MiHCM: https://mihcm.com/contact-us/
