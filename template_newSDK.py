@@ -41,7 +41,7 @@ load_dotenv()
 # Set the employee code for the user
 employeeCode = 1
 
-#sample reuqests to test the agent
+#sample requests to test the agent
 
 # sample_requests = [
 #     "What are my leave balances",
