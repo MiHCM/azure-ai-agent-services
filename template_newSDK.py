@@ -67,7 +67,7 @@ with open('./mihcmExternalAPI.json', 'r') as f:
     openapi_spec = jsonref.loads(f.read())
 
 # Use with openapi.json file from url
-# response = requests.get('<replace the openapi confguration url>')
+# response = requests.get('<replace the openapi configuration url>')
 # response.raise_for_status()  # makes sure it raises an error if something goes wrong
 # openapi_spec = jsonref.loads(response.text)
 
