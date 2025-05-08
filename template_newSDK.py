@@ -53,9 +53,9 @@ employeeCode = 1
 # ]
 
 # Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-project_client = AIProjectClient.from_connection_string(
+project_client = AIProjectClient(
     credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+    conn_str=os.environ["PROJECT_ENDPOINT"],
 )
 
 # create a connection object for the openapi tool's API key
